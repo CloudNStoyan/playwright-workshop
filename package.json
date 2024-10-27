@@ -11,11 +11,12 @@
     "lint": "eslint ./ --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "build-tests": "rimraf ./tests-out && tsc",
-    "test": "run-script-os",
-    "test:windows": "npm run build-fe && npm run build-tests && playwright test --project=chrome --project=firefox --project=edge -c ./tests-out",
-    "test:macos": "npm run build-fe && npm run build-tests && playwright test --project=chrome --project=firefox --project=webkit -c ./tests-out",
-    "test:linux": "npm run build-fe && npm run build-tests && playwright test --project=chrome --project=firefox -c ./tests-out",
-    "test:default": "echo \"Error: Platform not supported\" & exit 1",
+    "playwright-tests": "run-script-os",
+    "playwright-tests:windows": "playwright test --project=chrome --project=firefox --project=edge -c ./tests-out",
+    "playwright-tests:macos": "playwright test --project=chrome --project=firefox --project=webkit -c ./tests-out",
+    "playwright-tests:linux": "playwright test --project=chrome --project=firefox -c ./tests-out",
+    "playwright-tests:default": "echo \"Error: Platform not supported\" & exit 1",
+    "test": "npm run build-fe && npm run build-tests && npm run playwright-tests",
     "install-browsers": "run-script-os",
     "install-browsers:windows": "playwright install --with-deps chrome & playwright install --with-deps firefox & playwright install --with-deps msedge & playwright install ffmpeg",
     "install-browsers:macos": "playwright install --with-deps chrome; playwright install --with-deps firefox; playwright install --with-deps webkit; playwright install ffmpeg",
@@ -23,8 +24,8 @@
     "install-browsers:default": "echo \"Error: Platform not supported\" & exit 1",
     "test:debug": "npm run build-fe && npm run build-tests && playwright test --debug --project=chrome -c ./tests-out",
     "test:strict": "npm run build-fe && npm run build-tests && playwright test --project=chrome -c ./tests-out --retries=0 --trace=on",
-    "test:watch": "concurrently --kill-others \"rimraf ./tests-out && tsc -w\" \"cross-env PWTEST_WATCH=1 npm run test\"",
-    "test-report": "playwright show-report --host=0.0.0.0"
+    "test:watch": "npm run build-fe && npm run build-tests && concurrently --handleInput --defaultInputTarget=1 --kill-others \"tsc -w\" \"cross-env PWTEST_WATCH=1 npm run playwright-tests\"",
+    "show-report": "playwright show-report --host=0.0.0.0"
   },
   "dependencies": {
     "@playwright/test": "^1.48.1"
