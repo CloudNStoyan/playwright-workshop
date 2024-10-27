@@ -15,10 +15,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
-    video: {
-      mode: 'on',
-      size: VIEWPORT,
-    },
+    viewport: VIEWPORT,
   },
   retries: 1,
   webServer: {
@@ -35,7 +32,6 @@ export default defineConfig({
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
-        viewport: VIEWPORT,
       },
       timeout: 60 * 1000,
     },
@@ -43,7 +39,6 @@ export default defineConfig({
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
-        viewport: VIEWPORT,
       },
     },
     {
@@ -51,7 +46,6 @@ export default defineConfig({
       use: {
         ...devices['Desktop Edge'],
         channel: 'msedge',
-        viewport: VIEWPORT,
       },
     },
     {
@@ -59,7 +53,6 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         channel: 'chrome',
-        viewport: VIEWPORT,
       },
     },
   ],
