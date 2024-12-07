@@ -22,3 +22,25 @@ updates:
     ignore:
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
+  - package-ecosystem: 'npm'
+    labels: ['dependencies', 'autoupdate']
+    directory: '/mock-app'
+    schedule:
+      interval: 'weekly'
+    versioning-strategy: increase
+    groups:
+      production-dependencies:
+        applies-to: version-updates
+        dependency-type: 'production'
+        update-types:
+          - 'minor'
+          - 'patch'
+      development-dependencies:
+        applies-to: version-updates
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
