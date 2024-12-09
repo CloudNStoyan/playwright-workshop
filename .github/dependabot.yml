@@ -19,6 +19,9 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+      security-fixes:
+        applies-to: security-updates
+        patterns: ['*']
     ignore:
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
@@ -41,6 +44,9 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+      security-fixes:
+        applies-to: security-updates
+        patterns: ['*']
     ignore:
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
