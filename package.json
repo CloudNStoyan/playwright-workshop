@@ -28,7 +28,7 @@
     "show-report": "playwright show-report --host=0.0.0.0"
   },
   "dependencies": {
-    "@playwright/test": "^1.48.2"
+    "@playwright/test": "^1.49.0"
   },
   "devDependencies": {
     "@arabasta/eslint-config": "^1.0.5",
